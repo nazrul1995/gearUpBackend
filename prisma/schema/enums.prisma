@@ -6,6 +6,8 @@ enum ActiveStatus {
 enum Role {
   USER
   AUTHOR
+  PROVIDER
+  CUSTOMER
   ADMIN
 }
 
@@ -14,6 +16,13 @@ enum PostStatus {
   PUBLISHED
   ARCHIVED
 }
+
+
+enum GearStatus {
+  ACTIVE
+  INACTIVE
+}
+
 
 enum CommentStatus {
   APPROVED

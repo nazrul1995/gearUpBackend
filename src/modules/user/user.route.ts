@@ -42,7 +42,7 @@ router.get("/me",
 //     next();
 // }, 
 
-auth(Role.ADMIN, Role.USER, Role.AUTHOR),
+auth(Role.ADMIN, Role.USER, Role.AUTHOR, Role.CUSTOMER, Role.PROVIDER),
 
 userController.getMyProfile);
 

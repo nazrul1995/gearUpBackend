@@ -6,10 +6,11 @@ import { globalErrorHandler } from "./middlewares/globalErrorHandler";
 import { notFound } from "./middlewares/notFound";
 import { authRoutes } from "./modules/auth/auth.routes";
 import { commentRoutes } from "./modules/comment/comment.route";
-import { postRoutes } from "./modules/post/post.route";
+import { gearRoutes} from "./modules/gear/gear.route";
 import { premiumRoutes } from "./modules/premium/premium.route";
 import { subscriptionRoutes } from "./modules/subscription/subscription.route";
 import { userRoutes } from "./modules/user/user.route";
+import { postRoutes } from "./modules/post/post.route";
 
 
 
@@ -86,6 +87,7 @@ app.get("/",(req : Request, res : Response) => {
 app.use("/api/users", userRoutes)
 app.use("/api/auth", authRoutes)
 app.use("/api/posts", postRoutes)
+app.use("/api/gears", gearRoutes)
 app.use("/api/comments", commentRoutes)
 app.use("/api/subscription", subscriptionRoutes)
 app.use("/api/premium", premiumRoutes)

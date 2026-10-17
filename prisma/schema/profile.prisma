@@ -11,3 +11,33 @@ model Profile {
 
   @@map("profiles")
 }
+
+model CustomerProfile {
+  id          String   @id @default(cuid())
+  address     String?
+  dateOfBirth DateTime?
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+
+  @@map("customer_profiles")
+
+}
+
+model ProviderProfile {
+  id              String   @id @default(cuid())
+  shopName        String
+  shopDescription String?
+  address         String?
+  businessLicense String?
+  userId String @unique
+  user   User   @relation(fields: [userId], references: [id])
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+  
+  @@map("provider_profiles")
+
+}
