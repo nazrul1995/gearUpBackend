@@ -40,10 +40,12 @@ const getMyProfileFromDB = async (userId : string) => {
     const user = await prisma.user.findUniqueOrThrow({
         where : {id : userId},
         omit : {
-            password : true
+            password : true,
+            profile: false,
         },
-        include : {
-            profile : true
+
+        include: {
+            profile: true
         }
     });
 

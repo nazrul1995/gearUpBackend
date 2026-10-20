@@ -2,15 +2,24 @@ import { GearStatus, PostStatus } from "../../../generated/prisma/enums";
 import { GearItemWhereInput, PostWhereInput } from "../../../generated/prisma/models";
 
 export interface ICreateGearPayload {
-  categoryId?: string;
-  categoryName?: string;
-  name: string;
-  description?: string;
-  image?: string;
-  pricePerDay: number;
-  stock?: number;
+    categoryId?: string;
+    categoryName?: string;
+    name: string;
+    description?: string;
+    image?: string;
+    pricePerDay: number;
+    stock?: number;
 }
 
+export interface IUpdateGearPayload {
+    categoryId?: string;
+    categoryName?: string;
+    name?: string;
+    description?: string;
+    image?: string;
+    pricePerDay?: number;
+    stock?: number;
+}
 export interface IUpdatePostPayload {
     title?: string;
     content?: string;
@@ -30,11 +39,14 @@ export interface IPostQuery extends PostWhereInput {
     limit?: string
     sortOrder?: string
     sortBy?: string
-} 
+}
 export interface IGearQuery extends GearItemWhereInput {
     searchTerm?: string
     page?: string
     limit?: string
     sortOrder?: string
     sortBy?: string
+    minPrice?: string;
+    maxPrice?: string;
+    availableOnly?: string;
 } 

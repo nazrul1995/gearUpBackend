@@ -6,7 +6,6 @@ model Review {
   comment    String?
 
   customer User @relation( fields: [customerId], references: [id], onDelete: Restrict)
-
   gear GearItem @relation( fields: [gearId], references: [id], onDelete: Restrict)
 
   createdAt DateTime @default(now())

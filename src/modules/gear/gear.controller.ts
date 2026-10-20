@@ -25,7 +25,8 @@ const createGear = catchAsync(
 );
 
 const getAllGears = catchAsync(async (req : Request, res : Response, next : NextFunction) => {
-    const result = await GearService.getAllGears()
+    const query = req.query;
+    const result = await GearService.getAllGears(query)
       sendResponse(res, {
         success : true,
         statusCode : httpStatus.OK,
@@ -52,10 +53,10 @@ const getGearById = catchAsync(async (req : Request, res : Response, next : Next
 })
 
 const updateGear = catchAsync(async (req : Request, res : Response, next : NextFunction) => {
-    const authorId = req.user?.id
+    const providerId = req.user?.id
     const isAdmin = req.user?.role === "ADMIN";
-
-    const GearId = req.params.GearId;
+    console.log(req.user)
+    const GearId = req.params.gearId;
 
     if (!GearId) {
         throw new Error("Gear Id Required In Params")
@@ -63,7 +64,7 @@ const updateGear = catchAsync(async (req : Request, res : Response, next : NextF
 
     const payload = req.body;
 
-    const result = await GearService.updateGear(GearId as string, payload, authorId as string, isAdmin)
+    const result = await GearService.updateGear(GearId as string, payload, providerId as string, isAdmin)
 
     sendResponse(res, {
         success: true,
@@ -74,15 +75,15 @@ const updateGear = catchAsync(async (req : Request, res : Response, next : NextF
 })
 
 const deleteGear = catchAsync(async (req : Request, res : Response, next : NextFunction) => {
-    const authorId = req.user?.id
+    const providerId = req.user?.id
     const isAdmin = req.user?.role === "ADMIN";
-
-    const GearId = req.params.GearId;
-    if (!GearId) {
+    console.log(req)
+    const gearId = req.params.gearId;
+    if (!gearId) {
         throw new Error("Gear Id Required In Params")
     }
 
-    await GearService.deleteGear(GearId as string, authorId as string, isAdmin)
+    await GearService.deleteGear(gearId as string, providerId as string, isAdmin)
 
     sendResponse(res, {
         success: true,
@@ -104,9 +105,9 @@ const getGearsStats = catchAsync(async (req : Request, res : Response, next : Ne
 })
 
 const getMyGears = catchAsync(async (req : Request, res : Response, next : NextFunction) => {
-    const authorId = req.user?.id;
+    const providerId = req.user?.id;
 
-    const result = await GearService.getMyGears(authorId as string);
+    const result = await GearService.getMyGears(providerId as string);
 
     sendResponse(res, {
         success: true,

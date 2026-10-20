@@ -17,22 +17,22 @@ router.get(
 );
 
 router.get(
-    "/my-posts",
-    auth(Role.USER, Role.ADMIN, Role.AUTHOR),
+    "/my-gear",
+    auth(Role.PROVIDER, Role.ADMIN, Role.AUTHOR),
     GearController.getMyGears
 );
 
 router.get("/:postId", GearController.getGearById);
 
 router.patch(
-    "/:postId", 
-    auth(Role.USER, Role.ADMIN, Role.AUTHOR), 
+    "/:gearId", 
+    auth(Role.PROVIDER, Role.ADMIN), 
     GearController.updateGear
 );
 
 router.delete(
-    "/:postId", 
-    auth(Role.USER, Role.ADMIN, Role.AUTHOR), 
+    "/:gearId", 
+    auth(Role.PROVIDER, Role.ADMIN), 
     GearController.deleteGear
 );
 
